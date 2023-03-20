@@ -1,0 +1,76 @@
+.counter {
+  width: 200px;
+  height: 150px;
+  border: #004d4d 3px solid;
+  border-radius: 5px;
+  margin: 10px auto;
+}
+
+.count-display {
+  background-color: #004d4d;
+  margin: 5px 8px;
+  width: 180px;
+  height: 90px;
+  border: #017373 2px outset;
+  border-radius: 5px;
+  line-height: 90px;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+}
+
+
+.buttons-display {
+  border: #004d4d 3px solid;
+  border-radius: 5px;
+  width: 180px;
+  height: 35px;
+  margin: 5px 7px 5px 7px;
+
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.count-display-error {
+  background-color: #004d4d;
+  margin: 5px 8px;
+  width: 180px;
+  height: 90px;
+  border: #017373 2px outset;
+  border-radius: 5px;
+  line-height: 90px;
+  text-align: center;
+  font-size: 50px;
+  color: #fd1616;
+}
+
+.button {
+  padding: 5px 7px;
+  font-size: 15px;
+  width: content-box;
+  /*border: none;*/
+  border-radius: 5px;
+  background-color: #004d4d;
+  margin: 3px 7px 0 22px;
+  color: white;
+  border: #017373 1px outset;
+}
+
+.button:active {
+  background-color: #003333;
+}
+
+
+.disabled {
+  /*background-color: #004d4d;*/
+  opacity: 0.5;
+}
+
+
+.button:hover:disabled{
+  background-color: #004d4d;
+  opacity: 0.5;
+}
