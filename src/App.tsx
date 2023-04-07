@@ -6,9 +6,9 @@ import {Settings} from "./components/Settings";
 
 function App() {
     return (
-        <div >
-            <Counter/>
+        <div className='App'>
             <Settings/>
+            <Counter/>
         </div>
     )
 }
