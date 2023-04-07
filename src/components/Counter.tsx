@@ -19,7 +19,7 @@ export const Counter = () => {
     const incDisabled = (count === maxValue)
     const resetDisabled = (count === minValue)
 
-    const displayClass = (count === maxValue ? "count-display-error" : "count-display")
+    const displayClass = (count === maxValue ? "count-display-error" : "display")
 
     const incClass = `button
     ${incDisabled ? 'disabled' : ''}`
@@ -32,13 +32,13 @@ export const Counter = () => {
 
     return (
         <div>
-            <div className="counter">
+            <div className="container">
 
                 <div className={displayClass}>{count}</div>
 
                 <div className="buttons-display">
-                    <SuperButton callback={incHandler} className={incClass} disabled={incDisabled}>INC</SuperButton>
-                    <SuperButton callback={resetHandler} className={resetClass} disabled={resetDisabled}>RESET</SuperButton>
+                    <SuperButton name={'INC'} callback={incHandler} className={incClass} disabled={incDisabled} />
+                    <SuperButton name={'RESET'} callback={resetHandler} className={resetClass} disabled={resetDisabled} />
                 </div>
 
             </div>

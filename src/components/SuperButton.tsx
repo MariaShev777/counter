@@ -5,14 +5,13 @@ type SuperButtonPropsType = {
     callback: () => void
     disabled: boolean
     className: string
-    children: React.ReactNode
+    name: string
 }
 
-export const SuperButton: React.FC<SuperButtonPropsType> =
-    ({callback, disabled, className, children}) => {
+export const SuperButton = (props: SuperButtonPropsType) => {
 
 
     return (
-           <button onClick={callback} disabled={disabled} className={className}>{children}</button>
+           <button onClick={props.callback} disabled={props.disabled} className={props.className}>{props.name}</button>
     );
 };
