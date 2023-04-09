@@ -6,8 +6,17 @@ import {Settings} from "./components/Settings";
 
 function App() {
 
-    let [maxValue, setMaxValue] = useState(0);
-    let [startValue, setStartValue] = useState(0);
+    let [maxValue, setMaxValue] = useState<number>(5);
+    let [startValue, setStartValue] = useState<number>(0);
+
+    let [counter, setCounter] = useState<number>(0)
+
+    const increment = () => {
+        if (counter < maxValue) {
+            debugger
+            setCounter(counter + 1)
+        }
+    }
 
 
     const maxValueSet = (maxNum: number) => {
@@ -18,6 +27,16 @@ function App() {
         setStartValue(startNum)
     }
 
+    const setCounterValue = () => {
+        setCounter(startValue)
+
+    }
+
+    const reset = () => {
+        setCounter(startValue)
+    }
+
+    const displayClass = `${counter === maxValue ? "count-display-error" : "display"}`
 
 
 
@@ -28,9 +47,15 @@ function App() {
                 maxValue={maxValue}
                 maxValueSet={maxValueSet}
                 startValueSet={startValueSet}
+                setCounterValue={setCounterValue}
             />
+
             <Counter startValue={startValue}
-                     maxValue={maxValue}/>
+                     maxValue={maxValue}
+                     increment={increment}
+                     reset={reset}
+                     counter={counter}
+                     displayClass={displayClass}/>
         </div>
     )
 }

@@ -8,7 +8,7 @@ type SettingsPropsType = {
     startValue: number
     maxValueSet: (maxNum: number) => void
     startValueSet: (startNum: number) => void
-
+    setCounterValue: () => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
@@ -20,11 +20,15 @@ export const Settings = (props: SettingsPropsType) => {
         props.startValueSet(startNum)
     }
 
-    const maxValueLimit = `${props.maxValue > props.startValue ? 'input-error' :
-        props.maxValue === props.startValue ? 'input-error' : 'input'}`
-    const startValueLimit = `${props.startValue < 0 ? 'input-error' :
-        props.maxValue === props.startValue ? 'input-error' : 'input'}`
 
+
+    const valueLimit =
+        `${props.startValue < 0
+            ? "input-error"
+            : props.maxValue < props.startValue
+                ? "input-error"
+                : props.maxValue === props.startValue
+                    ? "input-error" : "input"}`
 
     return (
         <div>
@@ -35,12 +39,19 @@ export const Settings = (props: SettingsPropsType) => {
                             Start value:
                         </div>
                         <div>
-                            <SuperInput value={props.maxValue} className={maxValueLimit}  callback={maxValueChangeHandler}/>
-                            <SuperInput value={props.startValue} className={startValueLimit} callback={startValueChangeHandler}/>
+                            <SuperInput value={props.maxValue}
+                                        className={valueLimit}
+                                        callback={maxValueChangeHandler}/>
+                            <SuperInput value={props.startValue}
+                                        className={valueLimit}
+                                        callback={startValueChangeHandler}/>
                         </div>
                 </div>
                     <div className="buttons-display">
-                        <SuperButton callback={()=>{}} className={'button'} disabled name={'SET'}/>
+                        <SuperButton name={'SET'}
+                                     callback={props.setCounterValue}
+                                     className={'button'}
+                                     disabled={false} />
                     </div>
 
                 </div>

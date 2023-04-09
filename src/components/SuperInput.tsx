@@ -10,7 +10,7 @@ type SuperInputPropsType = {
 export const SuperInput = (props: SuperInputPropsType) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.callback(e.currentTarget.value)
+        props.callback(+e.currentTarget.value)
     }
 
 
