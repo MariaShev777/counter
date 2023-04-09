@@ -1,25 +1,30 @@
 import React, {useState} from "react";
 import {SuperButton} from "./SuperButton";
 
-export const Counter = () => {
 
-    let maxValue = 5;
-    let minValue = 0;
 
-    const [count, setCount] = useState<number>(minValue)
+type CounterPropsType = {
+    maxValue: number
+    startValue: number
+}
+
+export const Counter = (props: CounterPropsType) => {
+
+
+    const [count, setCount] = useState<number>(props.startValue)
 
     const incHandler = () => {
-        if (count < maxValue) setCount(count + 1);
+        if (count < props.maxValue) setCount(count + 1);
     }
 
     const resetHandler = () => {
-        setCount(minValue)
+        setCount(props.startValue)
     }
 
-    const incDisabled = (count === maxValue)
-    const resetDisabled = (count === minValue)
+    const incDisabled = (count === props.maxValue)
+    const resetDisabled = (count === props.startValue)
 
-    const displayClass = (count === maxValue ? "count-display-error" : "display")
+    const displayClass = (count === props.maxValue ? "count-display-error" : "display")
 
     const incClass = `button
     ${incDisabled ? 'disabled' : ''}`

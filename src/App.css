@@ -126,8 +126,27 @@
 }
 
 
+
+.input {
+  border: 3px solid #ffb803;
+  outline: none;
+  border-radius: 3px;
+  height: 25px;
+  text-align: center;
+  font-family: "Microsoft Sans Serif";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
 .input-error {
   border: 3px solid #ff0101;
-  /*background-color: #c71303;*/
-  box-shadow: inset 0 0 10px 2px #ff0101;
+  box-shadow: inset 0 0 5px 2px #ff0101;
+  outline: none;
+  border-radius: 3px;
+  height: 25px;
+  text-align: center;
+  font-family: "Microsoft Sans Serif";
+  font-size: 14px;
+  font-weight: bold;
 }

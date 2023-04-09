@@ -20,8 +20,10 @@ export const Settings = (props: SettingsPropsType) => {
         props.startValueSet(startNum)
     }
 
-    const startValueError = `''
-    ${props.startValue < 0 ? 'input-error' : ''}`
+    const maxValueLimit = `${props.maxValue > props.startValue ? 'input-error' :
+        props.maxValue === props.startValue ? 'input-error' : 'input'}`
+    const startValueLimit = `${props.startValue < 0 ? 'input-error' :
+        props.maxValue === props.startValue ? 'input-error' : 'input'}`
 
 
     return (
@@ -33,8 +35,8 @@ export const Settings = (props: SettingsPropsType) => {
                             Start value:
                         </div>
                         <div>
-                            <SuperInput value={props.maxValue} className={''}  callback={maxValueChangeHandler}/>
-                            <SuperInput value={props.startValue} className={startValueError} callback={startValueChangeHandler}/>
+                            <SuperInput value={props.maxValue} className={maxValueLimit}  callback={maxValueChangeHandler}/>
+                            <SuperInput value={props.startValue} className={startValueLimit} callback={startValueChangeHandler}/>
                         </div>
                 </div>
                     <div className="buttons-display">

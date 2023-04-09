@@ -29,7 +29,8 @@ function App() {
                 maxValueSet={maxValueSet}
                 startValueSet={startValueSet}
             />
-            <Counter/>
+            <Counter startValue={startValue}
+                     maxValue={maxValue}/>
         </div>
     )
 }
