@@ -11,32 +11,56 @@ function App() {
 
     let [counter, setCounter] = useState<number>(0)
 
+    let [disabled, setDisabled] = useState<boolean>(false)
+
+    let maxValueIncorrectCases = maxValue < startValue
+        || maxValue === startValue
+
+    // if (maxValueIncorrectCases) {
+    //     setDisabled(true)
+    // }
+
+    let startValueIncorrectCases = startValue < 0
+        || maxValue < startValue
+        || maxValue === startValue
+
+    // if (startValueIncorrectCases) {
+    //     setDisabled(true)
+    // }
+
+
     const increment = () => {
         if (counter < maxValue) {
-            debugger
             setCounter(counter + 1)
         }
     }
 
 
     const maxValueSet = (maxNum: number) => {
-        setMaxValue(maxNum)
+        if (maxNum % 1 === 0 && maxNum.toString().length < 9) {
+            setMaxValue(maxNum)
+        }
+        setDisabled(false)
     }
 
     const startValueSet = (startNum: number) => {
-        setStartValue(startNum)
+        if (startNum % 1 === 0 && startNum.toString().length < 9) {
+            setStartValue(startNum)
+        }
+        setDisabled(false)
     }
 
     const setCounterValue = () => {
         setCounter(startValue)
-
+        setDisabled(!disabled)
     }
+
+
 
     const reset = () => {
         setCounter(startValue)
     }
 
-    const displayClass = `${counter === maxValue ? "count-display-error" : "display"}`
 
 
 
@@ -48,14 +72,16 @@ function App() {
                 maxValueSet={maxValueSet}
                 startValueSet={startValueSet}
                 setCounterValue={setCounterValue}
+                disabled={disabled}
+                maxValueIncorrectCases={maxValueIncorrectCases}
+                startValueIncorrectCases={startValueIncorrectCases}
             />
 
             <Counter startValue={startValue}
                      maxValue={maxValue}
                      increment={increment}
                      reset={reset}
-                     counter={counter}
-                     displayClass={displayClass}/>
+                     counter={counter}/>
         </div>
     )
 }

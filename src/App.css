@@ -113,16 +113,16 @@
 }
 
 
-.disabled {
+.button:disabled {
   /*background-color: #004d4d;*/
   opacity: 0.5;
 }
 
 
-.button:hover:disabled{
-  background-color: #c59506;
-  opacity: 0.5;
-}
+/*.button:hover:disabled{*/
+/*  background-color: #c59506;*/
+/*  opacity: 0.5;*/
+/*}*/
 
 
 

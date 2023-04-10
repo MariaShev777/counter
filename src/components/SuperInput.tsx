@@ -15,6 +15,6 @@ export const SuperInput = (props: SuperInputPropsType) => {
 
 
     return (
-        <input type='number' onChange={onChangeHandler} value={props.value} className={props.className} />
+        <input type='number' onChange={onChangeHandler} value={props.value} className={props.className}/>
     );
 };
