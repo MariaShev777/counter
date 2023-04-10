@@ -9,6 +9,7 @@ type CounterPropsType = {
     increment: () => void
     reset: () => void
     counter: number
+    errorText: string | null
 }
 
 export const Counter = (props: CounterPropsType) => {
@@ -18,7 +19,8 @@ export const Counter = (props: CounterPropsType) => {
     const incDisabled = (props.counter === props.maxValue)
     const resetDisabled = (props.counter === props.startValue)
 
-    const displayClass = (props.counter === props.maxValue ? "count-display-error" : "display")
+    const errorClass = (props.errorText === "Incorrect value" ? "error-text-in-red-display" : "error-text-display")
+    const displayClass = (props.counter === props.maxValue ? "counter-error" : "counter")
 
     const incClass = `button
     ${incDisabled ? 'disabled' : ''}`
@@ -32,7 +34,10 @@ export const Counter = (props: CounterPropsType) => {
         <div>
             <div className="container">
 
-                <div className={displayClass}>{props.counter}</div>
+                <div className="display">
+                    {props.errorText ? <div className={errorClass}>{props.errorText}</div> :
+                        <div className={displayClass}>{props.counter}</div>}
+                </div>
 
                 <div className="buttons-display">
                     <SuperButton name={'INC'}

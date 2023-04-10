@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {SuperButton} from "./SuperButton";
 import {SuperInput} from "./SuperInput";
 
@@ -9,7 +9,7 @@ type SettingsPropsType = {
     maxValueSet: (maxNum: number) => void
     startValueSet: (startNum: number) => void
     setCounterValue: () => void
-    disabled: boolean
+    btnSetDisabled: boolean
     maxValueIncorrectCases: boolean
     startValueIncorrectCases: boolean
 }
@@ -26,10 +26,9 @@ export const Settings = (props: SettingsPropsType) => {
     }
 
 
-    const maxValueCorrectValue = props.maxValueIncorrectCases ? "input-error" : "input"
+    const maxValueIncorrectCases = props.maxValueIncorrectCases ? "input-error" : "input"
 
-    const startValueCorrectValue = props.startValueIncorrectCases ? "input-error" : "input"
-
+    const startValueIncorrectCases = props.startValueIncorrectCases ? "input-error" : "input"
 
 
 
@@ -47,10 +46,10 @@ export const Settings = (props: SettingsPropsType) => {
                     </div>
                     <div>
                         <SuperInput value={props.maxValue}
-                                    className={maxValueCorrectValue}
+                                    className={maxValueIncorrectCases}
                                     callback={maxValueChangeHandler}/>
                         <SuperInput value={props.startValue}
-                                    className={startValueCorrectValue}
+                                    className={startValueIncorrectCases}
                                     callback={startValueChangeHandler}/>
                     </div>
                 </div>
@@ -58,7 +57,7 @@ export const Settings = (props: SettingsPropsType) => {
                     <SuperButton name={"SET"}
                                  callback={props.setCounterValue}
                                  className={setClass}
-                                 disabled={props.disabled}/>
+                                 disabled={props.btnSetDisabled}/>
                 </div>
 
             </div>

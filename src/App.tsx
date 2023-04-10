@@ -11,55 +11,63 @@ function App() {
 
     let [counter, setCounter] = useState<number>(0)
 
-    let [disabled, setDisabled] = useState<boolean>(false)
+    let [btnSetDisabled, setBtnSetDisabled] = useState<boolean>(false)
+
+    let [errorText, setErrorText] = useState<string | null>(null)
+
+
 
     let maxValueIncorrectCases = maxValue < startValue
         || maxValue === startValue
 
-    // if (maxValueIncorrectCases) {
-    //     setDisabled(true)
-    // }
 
-    let startValueIncorrectCases = startValue < 0
-        || maxValue < startValue
-        || maxValue === startValue
-
-    // if (startValueIncorrectCases) {
-    //     setDisabled(true)
-    // }
+    let startValueIncorrectCases = (startValue < 0)
+        || (maxValue < startValue)
+        || (maxValue === startValue)
 
 
     const increment = () => {
         if (counter < maxValue) {
-            setCounter(counter + 1)
+            setCounter(++counter)
         }
     }
-
-
-    const maxValueSet = (maxNum: number) => {
-        if (maxNum % 1 === 0 && maxNum.toString().length < 9) {
-            setMaxValue(maxNum)
-        }
-        setDisabled(false)
-    }
-
-    const startValueSet = (startNum: number) => {
-        if (startNum % 1 === 0 && startNum.toString().length < 9) {
-            setStartValue(startNum)
-        }
-        setDisabled(false)
-    }
-
-    const setCounterValue = () => {
-        setCounter(startValue)
-        setDisabled(!disabled)
-    }
-
-
 
     const reset = () => {
         setCounter(startValue)
     }
+
+
+    const maxValueSet = (maxNum: number) => {
+        if (!(maxNum < startValue || startValue === maxNum) && maxNum % 1 === 0 && maxNum.toString().length < 9) {
+            setMaxValue(maxNum)
+            setBtnSetDisabled(false)
+            setErrorText("Enter values and press 'SET'")
+        } else {
+            setErrorText("Incorrect value")
+            setMaxValue(maxNum)
+            setBtnSetDisabled(true)
+        }
+    }
+
+    const startValueSet = (startNum: number) => {
+        if (!(startNum < 0 || maxValue < startNum || maxValue === startNum) && startNum % 1 === 0 && startNum.toString().length < 9) {
+            debugger
+            setStartValue(startNum)
+            setBtnSetDisabled(false)
+            setErrorText("Enter values and press 'SET'")
+        } else {
+            setStartValue(startNum)
+            setErrorText("Incorrect value")
+            setBtnSetDisabled(true)
+        }
+    }
+
+    const setCounterValue = () => {
+        setCounter(startValue)
+        setBtnSetDisabled(!btnSetDisabled)
+        setErrorText(null);
+    }
+
 
 
 
@@ -72,7 +80,7 @@ function App() {
                 maxValueSet={maxValueSet}
                 startValueSet={startValueSet}
                 setCounterValue={setCounterValue}
-                disabled={disabled}
+                btnSetDisabled={btnSetDisabled}
                 maxValueIncorrectCases={maxValueIncorrectCases}
                 startValueIncorrectCases={startValueIncorrectCases}
             />
@@ -81,7 +89,8 @@ function App() {
                      maxValue={maxValue}
                      increment={increment}
                      reset={reset}
-                     counter={counter}/>
+                     counter={counter}
+                     errorText={errorText}/>
         </div>
     )
 }
