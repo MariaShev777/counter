@@ -28,7 +28,7 @@ function App() {
 
     const increment = () => {
         if (counter < maxValue) {
-            setCounter(++counter)
+            setCounter(counter + 1)
         }
     }
 
@@ -38,7 +38,7 @@ function App() {
 
 
     const maxValueSet = (maxNum: number) => {
-        if (!(maxNum < startValue || startValue === maxNum) && maxNum % 1 === 0 && maxNum.toString().length < 9) {
+        if (!(maxNum < startValue || maxNum < 0 || startValue === maxNum) && maxNum % 1 === 0 && maxNum.toString().length < 9) {
             setMaxValue(maxNum)
             setBtnSetDisabled(false)
             setErrorText("Enter values and press 'SET'")
@@ -51,7 +51,6 @@ function App() {
 
     const startValueSet = (startNum: number) => {
         if (!(startNum < 0 || maxValue < startNum || maxValue === startNum) && startNum % 1 === 0 && startNum.toString().length < 9) {
-            debugger
             setStartValue(startNum)
             setBtnSetDisabled(false)
             setErrorText("Enter values and press 'SET'")

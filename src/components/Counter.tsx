@@ -10,6 +10,7 @@ type CounterPropsType = {
     reset: () => void
     counter: number
     errorText: string | null
+    // errorText: string | null
 }
 
 export const Counter = (props: CounterPropsType) => {
