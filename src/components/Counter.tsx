@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {SuperButton} from "./SuperButton";
 
 
@@ -10,15 +10,15 @@ type CounterPropsType = {
     reset: () => void
     counter: number
     errorText: string | null
-    // errorText: string | null
+
 }
 
 export const Counter = (props: CounterPropsType) => {
 
 
 
-    const incDisabled = (props.counter === props.maxValue)
-    const resetDisabled = (props.counter === props.startValue)
+    const incDisabled = (props.counter === props.maxValue || props.errorText === "Incorrect value")
+    const resetDisabled = (props.counter === props.startValue || props.errorText === "Incorrect value")
 
     const errorClass = (props.errorText === "Incorrect value" ? "error-text-in-red-display" : "error-text-display")
     const displayClass = (props.counter === props.maxValue ? "counter-error" : "counter")
