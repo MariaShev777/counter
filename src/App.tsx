@@ -49,7 +49,7 @@ function App() {
 
 
     const maxValueSet = (maxNum: number) => {
-        if ((maxNum > startValue && maxNum >= 0 && startValue !== maxNum) && maxNum % 2 === 0 && maxNum.toString().length < 9) {
+        if ((maxNum > startValue && maxNum >= 0 && startValue !== maxNum) && maxNum.toString().length < 9) {
             setMaxValue(maxNum)
             handleCorrectValueCondition();
         } else {
@@ -59,7 +59,7 @@ function App() {
     }
 
     const startValueSet = (startNum: number) => {
-        if ((startNum < maxValue && startNum >= 0 && maxValue !== startNum) && startNum % 2 === 0 && startNum.toString().length < 9) {
+        if ((startNum < maxValue && startNum >= 0 && maxValue !== startNum) && startNum.toString().length < 9) {
             setStartValue(startNum);
             handleCorrectValueCondition();
         } else {
