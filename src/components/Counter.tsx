@@ -8,7 +8,7 @@ type CounterPropsType = {
     startValue: number
     increment: () => void
     reset: () => void
-    counter: number
+    counter: number | null
     errorText: string | null
 
 }

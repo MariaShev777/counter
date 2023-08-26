@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
 import {Counter} from "./components/Counter";
 import {Settings} from "./components/Settings";
@@ -8,14 +8,27 @@ function App() {
 
     let [maxValue, setMaxValue] = useState<number>(5);
     let [startValue, setStartValue] = useState<number>(0);
+    let [counter, setCounter] = useState<number | null>(null);
 
-    let [counter, setCounter] = useState<number>(0)
+    let [btnSetDisabled, setBtnSetDisabled] = useState<boolean>(false);
 
-    let [btnSetDisabled, setBtnSetDisabled] = useState<boolean>(false)
-
-    let [errorText, setErrorText] = useState<string | null>(null)
+    let [errorText, setErrorText] = useState<string | null>(null);
 
 
+    useEffect(() => {
+        let maxValueString = localStorage.getItem("maxValue");
+        let startValueString = localStorage.getItem("startValue");
+        let counterValueString = localStorage.getItem("counterValue");
+        if (maxValueString && startValueString && counterValueString) {
+            setMaxValue(JSON.parse(maxValueString));
+            setStartValue(JSON.parse(startValueString));
+            setCounter(JSON.parse(counterValueString));
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem("counterValue", JSON.stringify(counter))
+    }, [counter])
 
     let maxValueIncorrectCases = maxValue  < 0
         || maxValue < startValue
@@ -28,7 +41,7 @@ function App() {
 
 
     const increment = () => {
-        if (counter < maxValue) {
+        if (counter && counter < maxValue) {
             setCounter(counter + 1)
         }
     }
@@ -52,6 +65,7 @@ function App() {
         if ((maxNum > startValue && maxNum >= 0 && startValue !== maxNum) && maxNum.toString().length < 9) {
             setMaxValue(maxNum)
             handleCorrectValueCondition();
+            localStorage.setItem('maxValue', JSON.stringify(maxNum))
         } else {
             setMaxValue(maxNum);
             handleIncorrectValueCondition();
@@ -62,6 +76,7 @@ function App() {
         if ((startNum < maxValue && startNum >= 0 && maxValue !== startNum) && startNum.toString().length < 9) {
             setStartValue(startNum);
             handleCorrectValueCondition();
+            localStorage.setItem('startValue', JSON.stringify(startNum))
         } else {
             setStartValue(startNum);
             handleIncorrectValueCondition();
@@ -69,10 +84,9 @@ function App() {
     }
 
     const setCounterValue = () => {
-            setCounter(startValue)
-            setBtnSetDisabled(true)
-            setErrorText(null);
-
+        setCounter(startValue)
+        setBtnSetDisabled(true)
+        setErrorText(null);
     }
 
 
