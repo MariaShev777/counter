@@ -8,7 +8,7 @@ function App() {
 
     let [maxValue, setMaxValue] = useState<number>(5);
     let [startValue, setStartValue] = useState<number>(0);
-    let [counter, setCounter] = useState<number | null>(null);
+    let [counter, setCounter] = useState<number | null>(startValue);
 
     let [btnSetDisabled, setBtnSetDisabled] = useState<boolean>(false);
 
